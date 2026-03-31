@@ -1,0 +1,103 @@
+---
+const navLinks = [
+  { href: '#inicio', label: 'Inicio' },
+  { href: '#nosotros', label: 'Nosotros' },
+  { href: '#alojamientos', label: 'Alojamientos' },
+  { href: '#galeria', label: 'Galería' },
+  { href: '#experiencias', label: 'Experiencias' },
+  { href: '#ubicacion', label: 'Ubicación' },
+  { href: '#testimonios', label: 'Testimonios' },
+  { href: '#faq', label: 'FAQ' },
+];
+
+const whatsappLink = 'https://wa.me/573122941890?text=Hola%2C%20quiero%20reservar%20en%20Entrenubes%20Glamping';
+---
+
+<nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500">
+  <div class="max-w-7xl mx-auto px-4 md:px-8">
+    <div class="flex items-center justify-between h-20">
+      <!-- Logo -->
+      <a href="#inicio" class="flex items-center gap-2 group">
+        <span class="text-2xl font-heading font-bold text-white transition-colors duration-300 group-hover:text-gold nav-logo">
+          ENTRENUBES
+        </span>
+        <span class="text-xs font-light tracking-[0.3em] text-white/80 uppercase nav-logo-sub">
+          glamping
+        </span>
+      </a>
+
+      <!-- Desktop Nav -->
+      <div class="hidden lg:flex items-center gap-8">
+        {navLinks.map(({ href, label }) => (
+          <a
+            href={href}
+            class="text-sm font-medium text-white/90 hover:text-white transition-colors duration-300 relative after:content-[''] after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-[2px] after:bg-gold after:transition-all after:duration-300 hover:after:w-full nav-link"
+          >
+            {label}
+          </a>
+        ))}
+        <a href={whatsappLink} target="_blank" rel="noopener noreferrer" class="btn-primary text-sm !py-2 !px-6">
+          Reservar
+        </a>
+      </div>
+
+      <!-- Mobile menu button -->
+      <button id="menu-toggle" class="lg:hidden text-white p-2" aria-label="Abrir menú">
+        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path id="menu-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="lg:hidden hidden bg-primary/95 backdrop-blur-lg border-t border-white/10">
+    <div class="px-4 py-6 space-y-4">
+      {navLinks.map(({ href, label }) => (
+        <a href={href} class="block text-white/90 hover:text-white font-medium py-2 mobile-link">
+          {label}
+        </a>
+      ))}
+      <a href={whatsappLink} target="_blank" rel="noopener noreferrer" class="btn-primary w-full justify-center mt-4">
+        Reservar ahora
+      </a>
+    </div>
+  </div>
+</nav>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  const menuToggle = document.getElementById('menu-toggle');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const mobileLinks = document.querySelectorAll('.mobile-link');
+
+  // Scroll effect
+  let lastScroll = 0;
+  window.addEventListener('scroll', () => {
+    const currentScroll = window.scrollY;
+    if (currentScroll > 80) {
+      navbar?.classList.add('bg-primary/95', 'backdrop-blur-lg', 'shadow-xl');
+    } else {
+      navbar?.classList.remove('bg-primary/95', 'backdrop-blur-lg', 'shadow-xl');
+    }
+    lastScroll = currentScroll;
+  });
+
+  // Mobile menu toggle
+  menuToggle?.addEventListener('click', () => {
+    mobileMenu?.classList.toggle('hidden');
+    const icon = document.getElementById('menu-icon');
+    if (mobileMenu?.classList.contains('hidden')) {
+      icon?.setAttribute('d', 'M4 6h16M4 12h16M4 18h16');
+    } else {
+      icon?.setAttribute('d', 'M6 18L18 6M6 6l12 12');
+    }
+  });
+
+  // Close mobile menu on link click
+  mobileLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenu?.classList.add('hidden');
+    });
+  });
+</script>

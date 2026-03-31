@@ -1,0 +1,100 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = 'Entrenubes Glamping | Glamping en Granada, Antioquia - Despierta entre las nubes',
+  description = 'Vive una experiencia única en Entrenubes Glamping, ubicado en la cima de una montaña en Granada, Antioquia. Domos y cabañas con vista al valle entre las nubes. Reserva ahora.',
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <meta name="keywords" content="glamping, Granada, Antioquia, domos, cabaña, naturaleza, entre nubes, montaña, valle, Colombia, turismo, hospedaje, experiencia" />
+    <meta name="author" content="Entrenubes Glamping" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:image" content="/images/og-image.jpg" />
+    <meta property="og:locale" content="es_CO" />
+    <meta property="og:site_name" content="Entrenubes Glamping" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content="/images/og-image.jpg" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet" />
+
+    <title>{title}</title>
+
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "LodgingBusiness",
+      "name": "Entrenubes Glamping",
+      "description": description,
+      "url": "https://entrenubesglamping.com",
+      "telephone": "+573122941890",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Granada",
+        "addressRegion": "Antioquia",
+        "addressCountry": "CO"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 6.145,
+        "longitude": -75.18
+      },
+      "image": "/images/og-image.jpg",
+      "priceRange": "$$",
+      "amenityFeature": [
+        { "@type": "LocationFeatureSpecification", "name": "Vista al valle" },
+        { "@type": "LocationFeatureSpecification", "name": "Cuatrimotos" },
+        { "@type": "LocationFeatureSpecification", "name": "Senderismo" }
+      ]
+    })} />
+  </head>
+  <body class="antialiased">
+    <slot />
+
+    <script>
+      // Scroll animations
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+            }
+          });
+        },
+        { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
+      );
+
+      document.querySelectorAll('.fade-up').forEach((el) => observer.observe(el));
+    </script>
+  </body>
+</html>

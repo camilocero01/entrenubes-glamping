@@ -1,0 +1,121 @@
+---
+const galleryItems = [
+  {
+    label: 'Vista panorámica del valle',
+    aspect: 'col-span-2 row-span-2',
+    image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&q=80',
+  },
+  {
+    label: 'Interior del domo',
+    aspect: '',
+    image: 'https://images.unsplash.com/photo-1631635589499-afd87d52bf64?w=600&q=80',
+  },
+  {
+    label: 'Atardecer desde el glamping',
+    aspect: '',
+    image: 'https://images.unsplash.com/photo-1495616811223-4d98c6e9c869?w=600&q=80',
+  },
+  {
+    label: 'Mar de nubes al amanecer',
+    aspect: 'col-span-2',
+    image: 'https://images.unsplash.com/photo-1534274988757-a28bf1a57c17?w=1200&q=80',
+  },
+  {
+    label: 'Terraza con vista',
+    aspect: '',
+    image: 'https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=600&q=80',
+  },
+  {
+    label: 'Fogata nocturna',
+    aspect: '',
+    image: 'https://images.unsplash.com/photo-1475483768296-6163e08872a1?w=600&q=80',
+  },
+  {
+    label: 'Cabaña entre la naturaleza',
+    aspect: 'col-span-2',
+    image: 'https://images.unsplash.com/photo-1587061949409-02df41d5e562?w=1200&q=80',
+  },
+];
+---
+
+<section id="galeria" class="section-padding bg-white">
+  <div class="max-w-7xl mx-auto">
+    <!-- Header -->
+    <div class="text-center mb-16 fade-up">
+      <span class="text-secondary text-sm font-semibold tracking-[0.25em] uppercase mb-4 block">
+        Galería
+      </span>
+      <h2 class="section-title">
+        Momentos que<br />
+        <span class="italic text-secondary">se quedan en el alma</span>
+      </h2>
+      <p class="section-subtitle mt-4">
+        Cada rincón de Entrenubes es una postal que merece ser capturada.
+      </p>
+    </div>
+
+    <!-- Gallery Grid -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 fade-up">
+      {galleryItems.map((item, i) => (
+        <div
+          class={`relative group rounded-2xl overflow-hidden cursor-pointer ${item.aspect} min-h-[200px] md:min-h-[250px]`}
+          data-gallery-item={i}
+        >
+          <img
+            src={item.image}
+            alt={item.label}
+            class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+            loading="lazy"
+          />
+          <!-- Hover overlay -->
+          <div class="absolute inset-0 bg-primary/0 group-hover:bg-primary/40 transition-all duration-500 flex items-end">
+            <div class="p-4 w-full translate-y-full group-hover:translate-y-0 transition-transform duration-500">
+              <p class="text-white text-sm font-medium text-shadow">{item.label}</p>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- Lightbox -->
+<div id="lightbox" class="fixed inset-0 z-[100] bg-black/90 backdrop-blur-sm hidden items-center justify-center cursor-pointer" role="dialog" aria-label="Imagen ampliada">
+  <button id="lightbox-close" class="absolute top-6 right-6 text-white/80 hover:text-white z-10" aria-label="Cerrar">
+    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+    </svg>
+  </button>
+  <img id="lightbox-img" src="" alt="" class="max-w-[90vw] max-h-[90vh] object-contain rounded-lg" />
+</div>
+
+<script>
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-img') as HTMLImageElement;
+  const lightboxClose = document.getElementById('lightbox-close');
+
+  document.querySelectorAll('[data-gallery-item]').forEach((el) => {
+    el.addEventListener('click', () => {
+      const img = el.querySelector('img');
+      if (img && lightbox && lightboxImg) {
+        lightboxImg.src = img.src;
+        lightboxImg.alt = img.alt;
+        lightbox.classList.remove('hidden');
+        lightbox.classList.add('flex');
+      }
+    });
+  });
+
+  function closeLightbox() {
+    lightbox?.classList.add('hidden');
+    lightbox?.classList.remove('flex');
+  }
+
+  lightbox?.addEventListener('click', (e) => {
+    if (e.target === lightbox || e.target === lightboxClose) closeLightbox();
+  });
+  lightboxClose?.addEventListener('click', closeLightbox);
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeLightbox();
+  });
+</script>

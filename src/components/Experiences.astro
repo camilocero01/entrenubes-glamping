@@ -1,0 +1,126 @@
+---
+const experiences = [
+  {
+    title: 'Cuatrimotos',
+    description: 'Recorre los senderos de la montaña a bordo de nuestras cuatrimotos. Adrenalina pura con las mejores vistas del oriente antioqueño.',
+    icon: 'atv',
+    image: 'https://images.pexels.com/photos/19995803/pexels-photo-19995803.jpeg?auto=compress&cs=tinysrgb&w=600',
+  },
+  {
+    title: 'Senderismo',
+    description: 'Explora los caminos entre la naturaleza. Rutas para todos los niveles con vistas al valle y la oportunidad de caminar literalmente entre las nubes.',
+    icon: 'hiking',
+    image: 'https://images.unsplash.com/photo-1551632811-561732d1e306?w=600&q=80',
+  },
+  {
+    title: 'Fogatas nocturnas',
+    description: 'Al caer la noche, reúnete alrededor del fuego bajo un cielo estrellado. El complemento perfecto para una velada mágica en la montaña.',
+    icon: 'fire',
+    image: 'https://images.unsplash.com/photo-1475483768296-6163e08872a1?w=600&q=80',
+  },
+  {
+    title: 'Avistamiento de aves',
+    description: 'Granada es hogar de cientos de especies de aves. Despierta temprano y descubre la riqueza natural que nos rodea.',
+    icon: 'bird',
+    image: 'https://images.unsplash.com/photo-1444464666168-49d633b86797?w=600&q=80',
+  },
+  {
+    title: 'Mirador panorámico',
+    description: 'Un punto exclusivo de observación a 360° donde podrás contemplar el amanecer, el atardecer y el espectáculo de las nubes cubriendo el valle.',
+    icon: 'view',
+    image: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=600&q=80',
+  },
+  {
+    title: 'Desconexión total',
+    description: 'Déjate envolver por el silencio de la montaña. Hamacas, lectura, meditación y la calma que solo la naturaleza puede ofrecer.',
+    icon: 'relax',
+    image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&q=80',
+  },
+];
+---
+
+<section id="experiencias" class="section-padding bg-primary text-white relative overflow-hidden">
+  <!-- Background image -->
+  <div class="absolute inset-0">
+    <img
+      src="https://images.unsplash.com/photo-1534274988757-a28bf1a57c17?w=1920&q=60"
+      alt=""
+      class="w-full h-full object-cover opacity-10"
+      loading="lazy"
+      aria-hidden="true"
+    />
+  </div>
+
+  <div class="relative max-w-7xl mx-auto">
+    <!-- Header -->
+    <div class="text-center mb-16 fade-up">
+      <span class="text-gold text-sm font-semibold tracking-[0.25em] uppercase mb-4 block">
+        Experiencias
+      </span>
+      <h2 class="text-3xl md:text-5xl font-heading font-bold text-white mb-4">
+        Vive la montaña<br />
+        <span class="italic text-gold">a tu manera</span>
+      </h2>
+      <p class="text-lg md:text-xl text-white/70 max-w-2xl mx-auto">
+        Desde la adrenalina hasta la calma absoluta. En Entrenubes cada experiencia es inolvidable.
+      </p>
+    </div>
+
+    <!-- Grid -->
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {experiences.map((exp, i) => (
+        <div class="group relative rounded-2xl overflow-hidden min-h-[320px] fade-up" style={`transition-delay: ${i * 100}ms`}>
+          <!-- Background image -->
+          <img
+            src={exp.image}
+            alt={exp.title}
+            class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+            loading="lazy"
+          />
+          <!-- Overlay -->
+          <div class="absolute inset-0 bg-gradient-to-t from-primary via-primary/70 to-primary/30 group-hover:from-primary/95 group-hover:via-primary/80 transition-all duration-500"></div>
+
+          <!-- Content -->
+          <div class="relative z-10 p-8 h-full flex flex-col justify-end">
+            <div class="w-12 h-12 rounded-xl bg-gold/20 flex items-center justify-center mb-4 backdrop-blur-sm">
+              {exp.icon === 'atv' && (
+                <svg class="w-6 h-6 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 00-10.026 0 1.106 1.106 0 00-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12" />
+                </svg>
+              )}
+              {exp.icon === 'hiking' && (
+                <svg class="w-6 h-6 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+                </svg>
+              )}
+              {exp.icon === 'fire' && (
+                <svg class="w-6 h-6 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15.362 5.214A8.252 8.252 0 0112 21 8.25 8.25 0 016.038 7.048 8.287 8.287 0 009 9.6a8.983 8.983 0 013.361-6.867 8.21 8.21 0 003 2.48z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 18a3.75 3.75 0 003.75-3.75c0-2.072-1.678-3.923-3.75-5.25-2.072 1.327-3.75 3.178-3.75 5.25A3.75 3.75 0 0012 18z" />
+                </svg>
+              )}
+              {exp.icon === 'bird' && (
+                <svg class="w-6 h-6 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+              )}
+              {exp.icon === 'view' && (
+                <svg class="w-6 h-6 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M6.115 5.19l.319 1.913A6 6 0 008.11 10.36L9.75 12l-.387.775c-.217.433-.132.956.21 1.298l1.348 1.348c.21.21.329.497.329.795v1.089c0 .426.24.815.622 1.006l.153.076c.433.217.956.132 1.298-.21l.723-.723a8.7 8.7 0 002.288-4.042 1.087 1.087 0 00-.358-1.099l-1.33-1.108c-.251-.21-.582-.299-.905-.245l-1.17.195a1.125 1.125 0 01-.98-.314l-.295-.295a1.125 1.125 0 010-1.591l.13-.132a1.125 1.125 0 011.3-.21l.603.302a.809.809 0 001.086-1.086L14.25 7.5l1.256-.837a4.5 4.5 0 001.528-1.732l.146-.292M6.115 5.19A9 9 0 1017.18 4.64M6.115 5.19A8.965 8.965 0 0112 3c1.929 0 3.72.607 5.18 1.64" />
+                </svg>
+              )}
+              {exp.icon === 'relax' && (
+                <svg class="w-6 h-6 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
+                </svg>
+              )}
+            </div>
+            <h3 class="text-xl font-heading font-bold text-white mb-3">{exp.title}</h3>
+            <p class="text-white/75 leading-relaxed">{exp.description}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,78 @@
+---
+const faqs = [
+  {
+    question: '¿Qué incluye la estadía en Entrenubes Glamping?',
+    answer: 'Cada estadía incluye alojamiento en el domo o cabaña seleccionada, ropa de cama y toallas, acceso al mirador panorámico, zona de fogata y parqueadero privado. Consulta por paquetes con experiencias adicionales como cuatrimotos y senderismo guiado.',
+  },
+  {
+    question: '¿Cuáles son los horarios de check-in y check-out?',
+    answer: 'El check-in es a partir de las 3:00 PM y el check-out es hasta las 12:00 PM del día siguiente. Si necesitas horarios especiales, contáctanos con anticipación y haremos lo posible por acomodarte.',
+  },
+  {
+    question: '¿Se permiten mascotas?',
+    answer: 'Sí, en Entrenubes somos pet-friendly. Tu mascota es bienvenida siempre y cuando esté bajo tu supervisión y cumpla con las normas de convivencia del glamping. Infórmanos al momento de tu reserva.',
+  },
+  {
+    question: '¿Qué tipo de vehículo necesito para llegar?',
+    answer: 'Se recomienda un vehículo alto o 4x4 para el último tramo del camino, especialmente en temporada de lluvias. Si no cuentas con este tipo de vehículo, contáctanos y te ayudamos a coordinar el transporte desde Granada.',
+  },
+  {
+    question: '¿Qué debo llevar?',
+    answer: 'Te recomendamos traer ropa abrigada (la temperatura oscila entre 14-18°C), zapatos cómodos para caminar, protector solar, repelente de insectos y tu cámara fotográfica. Nosotros nos encargamos del resto.',
+  },
+  {
+    question: '¿Hay señal de celular y WiFi?',
+    answer: 'La señal de celular es limitada en la zona, lo cual es parte de la experiencia de desconexión. Sin embargo, contamos con WiFi básico en las áreas comunes para emergencias o necesidades puntuales.',
+  },
+  {
+    question: '¿Cómo puedo reservar?',
+    answer: 'Puedes reservar directamente a través de nuestro WhatsApp. Nuestro equipo te atenderá con toda la información sobre disponibilidad, tarifas y paquetes especiales.',
+  },
+];
+---
+
+<section id="faq" class="section-padding bg-light">
+  <div class="max-w-3xl mx-auto">
+    <!-- Header -->
+    <div class="text-center mb-16 fade-up">
+      <span class="text-secondary text-sm font-semibold tracking-[0.25em] uppercase mb-4 block">
+        Preguntas frecuentes
+      </span>
+      <h2 class="section-title">
+        Todo lo que<br />
+        <span class="italic text-secondary">necesitas saber</span>
+      </h2>
+    </div>
+
+    <!-- Accordion -->
+    <div class="space-y-4 fade-up">
+      {faqs.map((faq, i) => (
+        <details class="group bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow" data-faq={i}>
+          <summary class="flex items-center justify-between cursor-pointer p-6 font-semibold text-primary list-none">
+            <span class="pr-4">{faq.question}</span>
+            <svg class="w-5 h-5 text-secondary flex-shrink-0 transition-transform duration-300 group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </summary>
+          <div class="px-6 pb-6 text-primary/70 leading-relaxed">
+            {faq.answer}
+          </div>
+        </details>
+      ))}
+    </div>
+  </div>
+
+  <!-- FAQ Schema -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqs.map(faq => ({
+      "@type": "Question",
+      "name": faq.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": faq.answer,
+      },
+    })),
+  })} />
+</section>
